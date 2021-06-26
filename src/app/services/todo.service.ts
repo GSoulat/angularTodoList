@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TodoService {
-  today = new Date;
-  // todos:string[] = ["Projet t1 ", "Projet t2" ,"Projet t3", "Projet t4", "Projet t5" , "Projet t6" ,"Projet t7", "Projet t8", "Projet t9"];
+
+  today = new Date();
 
   todos =[
     {
