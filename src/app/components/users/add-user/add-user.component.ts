@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Adress } from 'src/app/models/adress.models';
 import { User } from 'src/app/models/user.models';
@@ -44,11 +44,16 @@ export class AddUserComponent implements OnInit {
         zip: this.formBuilder.control('', Validators.required),
         city: this.formBuilder.control('', Validators.required),
       }),
+      aliases: this.formBuilder.array([]),
     });
   }
 
   onSubmit(): void {
+
+
     const dataUser = this.userForm.value;
+    console.log(dataUser);
+    const alias = dataUser.aliases ? dataUser.aliases : [];
     const adress = new Adress(
       dataUser.street,
       dataUser.city,
@@ -61,10 +66,21 @@ export class AddUserComponent implements OnInit {
       dataUser.email,
       adress,
       dataUser.description,
-      dataUser.dateBirth
+      dataUser.dateBirth,
+      alias,
     );
     this.usersService.addUser(newUser);
     this.router.navigate(["users"]);
     console.log(this.userForm.value);
   }
+
+  getAliases(): FormArray{
+    return this.userForm.get("aliases") as FormArray;
+  }
+
+  addAliases():void{
+    this.getAliases().push(this.formBuilder.control("", Validators.required))
+  }
+
+
 }

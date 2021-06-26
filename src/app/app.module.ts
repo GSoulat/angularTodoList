@@ -11,25 +11,11 @@ import { HomeComponent } from './components/home/home.component';
 import { FotFoundComponent } from './components/fot-found/fot-found.component';
 import { SingleTodoComponent } from './components/single-todo/single-todo.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { RouterModule, Routes } from '@angular/router';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { UsersComponent } from './components/users/users.component';
 import { AddUserComponent } from './components/users/add-user/add-user.component';
-
-export const ROUTES: Routes = [
-  {path:'home', component: TodoComponent},
-  {path:'contact', component: ContactComponent},
-  {path:'fot-found', component: FotFoundComponent},
-  {path:'single-todo/:id', component: SingleTodoComponent},
-  {path:'todo', component: TodoComponent},
-  {path:'users', component: UsersComponent},
-  {path:'add-user', component: AddUserComponent},
-  {path:'addtodo', component: AddTodoComponent},
-  {path:'', component: TodoComponent},
-  {path:'**', pathMatch:'full', redirectTo: 'fot-found'},
-
-
-];
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingTestModule } from './app-routing-test.module';
 
 @NgModule({
   declarations: [
@@ -48,8 +34,10 @@ export const ROUTES: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES),
+    HttpClientModule,
     ReactiveFormsModule,
+    AppRoutingTestModule,
+
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]
