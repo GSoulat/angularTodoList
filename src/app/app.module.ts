@@ -7,17 +7,39 @@ import { HeaderComponent } from './shared/header/header.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from './services/todo.service';
+import { HomeComponent } from './components/home/home.component';
+import { FotFoundComponent } from './components/fot-found/fot-found.component';
+import { SingleTodoComponent } from './components/single-todo/single-todo.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { RouterModule, Routes } from '@angular/router';
+
+export const ROUTES: Routes = [
+  {path:'home', component: HomeComponent},
+  {path:'contact', component: ContactComponent},
+  {path:'fot-found', component: FotFoundComponent},
+  {path:'single-todo/:id', component: SingleTodoComponent},
+  {path:'todo', component: TodoComponent},
+  {path:'', component: HomeComponent},
+  {path:'**', component: HomeComponent},
+
+
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    TodoComponent
+    TodoComponent,
+    HomeComponent,
+    FotFoundComponent,
+    SingleTodoComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]

@@ -28,6 +28,10 @@
 > Terminée la modification</button>
 </div>
 
+<button class="btn btn-success  m-1"
+(click)="onView(i)"
+> En savoir plus </button>
+
 <input *ngIf="todo.isModif"  class="form-control" [(ngModel)]="todo.todoName">
 
 </div>
