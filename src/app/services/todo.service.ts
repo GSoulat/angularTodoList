@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Todo } from '../models/todo.models';
 
 @Injectable({
   providedIn: 'root'
@@ -7,30 +8,10 @@ import { Subject } from 'rxjs';
 export class TodoService {
 
   today = new Date();
-  todos :any;
+  todos :Todo[];
   todosSubject = new Subject<any[]>();
 
-  onChangeStatus(i:number) {
-    this.todos[i].todoStatus = !this.todos[i].todoStatus;
-    this.emitTodos();
-  }
-
-  onChangeIsModif(i:number) {
-    this.todos[i].isModif = !this.todos[i].isModif;
-    this.emitTodos();
-  }
-
-  getTodo(index:number){
-    if(this.todos[index]){
-      return this.todos[index]
-    }
-    return false;
-  }
-
-
   constructor() {
-
-    this.todos = new Promise((resolve,rejects)  => {
 
         setTimeout(() => {
           this.todos =[
@@ -72,10 +53,30 @@ export class TodoService {
           ];
           this.emitTodos();
         }, 3000);
-
-    });
   }
 
+  addTodo(todo : Todo):void{
+    this.todos.unshift(todo);
+    this.todosSubject.next(this.todos);
+  }
+
+
+  onChangeStatus(i:number) {
+    this.todos[i].todoStatus = !this.todos[i].todoStatus;
+    this.emitTodos();
+  }
+
+  onChangeIsModif(i:number) {
+    this.todos[i].isModif = !this.todos[i].isModif;
+    this.emitTodos();
+  }
+
+  getTodo(index:number){
+    if(this.todos[index]){
+      return this.todos[index]
+    }
+    return false;
+  }
   emitTodos(){
     this.todosSubject.next(this.todos);
 
