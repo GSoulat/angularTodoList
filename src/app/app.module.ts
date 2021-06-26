@@ -5,25 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { TodoComponent } from './components/todo/todo.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoService } from './services/todo.service';
 import { HomeComponent } from './components/home/home.component';
 import { FotFoundComponent } from './components/fot-found/fot-found.component';
 import { SingleTodoComponent } from './components/single-todo/single-todo.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { RouterModule, Routes } from '@angular/router';
-
-export const ROUTES: Routes = [
-  {path:'home', component: TodoComponent},
-  {path:'contact', component: ContactComponent},
-  {path:'fot-found', component: FotFoundComponent},
-  {path:'single-todo/:id', component: SingleTodoComponent},
-  {path:'todo', component: TodoComponent},
-  {path:'', component: TodoComponent},
-  {path:'**', pathMatch:'full', redirectTo: 'fot-found'},
-
-
-];
+import { AddTodoComponent } from './components/add-todo/add-todo.component';
+import { UsersComponent } from './components/users/users.component';
+import { AddUserComponent } from './components/users/add-user/add-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingTestModule } from './app-routing-test.module';
 
 @NgModule({
   declarations: [
@@ -33,13 +25,19 @@ export const ROUTES: Routes = [
     HomeComponent,
     FotFoundComponent,
     SingleTodoComponent,
-    ContactComponent
+    ContactComponent,
+    AddTodoComponent,
+    UsersComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES)
+    HttpClientModule,
+    ReactiveFormsModule,
+    AppRoutingTestModule,
+
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]

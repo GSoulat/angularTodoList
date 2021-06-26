@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-6">
+    <h1 class="display-4 text-center">Ajouter un utilisateur</h1>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-group"><label for="firstname">Prenom :</label>
+        <input type="text" class="form-control m-1" formControlName="firstname"/>
+      </div>
+      <div class="form-group"><label for="lastname">Nom :</label>
+        <input type="text" class="form-control m-1" formControlName="lastname"/>
+      </div>
+      <div class="form-group"><label for="email">Email :</label>
+        <input type="text" class="form-control m-1" formControlName="email"/>
+      </div>
+
+      <div class="form-group" formArrayName="aliases">
+        <button type="button" class="btn btn-success btn-lg" (click)="addAliases()">Ajouter un Alias</button>
+        <div *ngFor="let alias of getAliases().controls; let i =index">
+          <input class="fomr-control m-1" type="text" [formControlName]=i>
+        </div>
+      </div>
+
+      <div class="form-group" formGroupName="adress">
+        <h3>Adresse</h3>
+          <div class="row">
+            <div class="col-6"><label for="street">Rue :</label>
+              <input type="text" class="form-control m-1"  formControlName="street">
+            </div>
+
+            <div class="col-6"><label for="city">Ville :</label>
+              <input type="text" class="form-control m-1"  formControlName="city">
+            </div>
+            <div class="col-6"><label for="state">Etat :</label>
+              <input type="text" class="form-control m-1"  formControlName="state">
+            </div>
+
+            <div class="col-6"><label for="zip">Code postal :</label>
+              <input type="text" class="form-control m-1"  formControlName="zip">
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group"><label for="description">Description :</label>
+        <textarea type="text" class="form-control m-1" formControlName="description" cols="30" rows="5"></textarea>
+      </div>
+      <div class="form-group"><label for="dateBirth">Date de naissance :</label>
+        <input type="date" class="form-control m-1" formControlName="dateBirth"/>
+      </div>
+      <button type="submit" [disabled]="userForm.invalid" class="btn btn-success btn-lg">Ajouter Utilisateur</button>
+
+    </form>
+  </div>
+</div>
