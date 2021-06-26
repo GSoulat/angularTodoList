@@ -14,13 +14,13 @@ import { ContactComponent } from './components/contact/contact.component';
 import { RouterModule, Routes } from '@angular/router';
 
 export const ROUTES: Routes = [
-  {path:'home', component: HomeComponent},
+  {path:'home', component: TodoComponent},
   {path:'contact', component: ContactComponent},
   {path:'fot-found', component: FotFoundComponent},
   {path:'single-todo/:id', component: SingleTodoComponent},
   {path:'todo', component: TodoComponent},
-  {path:'', component: HomeComponent},
-  {path:'**', component: HomeComponent},
+  {path:'', component: TodoComponent},
+  {path:'**', pathMatch:'full', redirectTo: 'fot-found'},
 
 
 ];
