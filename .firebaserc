@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "angulartodolist-aa038"
+    "default": "angulartodolist-aa038",
+    "todolist": "todolist-de1c2",
+    "todolist-angular": "todolist-7c0b2"
   }
 }
